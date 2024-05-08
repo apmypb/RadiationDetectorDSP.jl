@@ -67,8 +67,8 @@ function gaussian_coeffs(N::Int, sigma::V, alpha::U, beta::U
     xᵢ::T = -sigma*alpha
     Δx::T = abs(2*xᵢ)/(N-1)
     for i=Base.OneTo(N)
-        y[i] = beta*exp(-0.5*(xᵢ/alpha)^2) / N
+        y[i] = beta*exp(-0.5*(xᵢ/sigma)^2)
         xᵢ += Δx
     end
-    y
+    y ./ sum(y)
 end
